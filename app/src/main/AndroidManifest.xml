@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PushUp">
         <activity
+            android:name=".ShowHighscore"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayMainPushUpPage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
