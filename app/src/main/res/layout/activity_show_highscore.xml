@@ -4,6 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="showHome"
     tools:context=".ShowHighscore">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:layout_width="213dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="#DDD7D7"
+            android:onClick="showHome"
+            android:paddingVertical="0dp"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="#090909">
+
+
+        </Button>
+
+        <Button
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FBF9F9"
+            android:paddingVertical="0dp"
+            android:text="Highscores"
+            android:textAlignment="center"
+            android:textColor="#121212">
+
+        </Button>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="302dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:text="Highscore"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

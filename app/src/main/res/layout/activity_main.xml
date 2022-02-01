@@ -37,6 +37,7 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#DDD7D7"
+            android:onClick="showHighscore"
             android:paddingVertical="0dp"
             android:text="Highscores"
             android:textAlignment="center"
@@ -48,8 +49,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="303dp"
-        android:layout_height="29dp"
+        android:layout_width="302dp"
+        android:layout_height="34dp"
         android:layout_marginTop="8dp"
         android:text="Welcome to PushUp App"
         android:textAlignment="center"
@@ -84,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
-        android:onClick="startPushUp"
+        android:onClick="saveData"
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,8 +100,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
+        android:hint="Full Name"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textColor="#121212"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,8 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Age"
         android:inputType="textPersonName"
-        android:text="Age"
         app:layout_constraintStart_toStartOf="@+id/Name"
         app:layout_constraintTop_toBottomOf="@+id/Name" />
 
@@ -123,8 +125,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
+        android:hint="Weight in kg"
         android:inputType="textPersonName"
-        android:text="Weight"
         app:layout_constraintStart_toStartOf="@+id/Age"
         app:layout_constraintTop_toBottomOf="@+id/Age" />
 
@@ -134,8 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
+        android:hint="Height in cm"
         android:inputType="textPersonName"
-        android:text="Height"
         app:layout_constraintStart_toStartOf="@+id/Weight"
         app:layout_constraintTop_toBottomOf="@+id/Weight" />
 
