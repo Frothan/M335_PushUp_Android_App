@@ -13,8 +13,8 @@
             android:name=".ShowHighscore"
             android:exported="false" />
         <activity
-            android:name=".DisplayMainPushUpPage"
-            android:exported="false" />
+            android:name=".CounterActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

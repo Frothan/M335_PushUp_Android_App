@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/chr.che/StudioProjects/M335_PushUp_Android_App/app/src/main/res/layout/activity_display_main_push_up_page.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/chr.che/StudioProjects/M335_PushUp_Android_App/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/chr.che/StudioProjects/M335_PushUp_Android_App/app/src/main/res/layout/activity_show_highscore.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/drawable/circle_1.xml" value="0.32685185185185184" />
+        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/layout/activity_counter.xml" value="0.33" />
+        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/layout/activity_display_main_push_up_page.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/bis.fro/AndroidStudioProjects/PushUp/app/src/main/res/layout/activity_show_highscore.xml" value="0.17806484295845998" />
       </map>
     </option>
   </component>
