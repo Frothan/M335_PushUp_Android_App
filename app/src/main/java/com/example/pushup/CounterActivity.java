@@ -1,40 +1,46 @@
 package com.example.pushup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class CounterActivity extends Activity {
+public class CounterActivity extends Activity implements SensorEventListener {
 
-   TextView textViewTimer;
+    TextView textViewTimer;
+    TextView getTextViewPushupCounter;
     private int seconds = 0;
-
+    private SensorManager sensorManager;
+    private Sensor proximity;
     // Is the stopwatch running?
     private boolean running;
-
     private boolean wasRunning;
+    private int pushupCounter;
+    boolean position = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_counter);
+        // Get an instance of the sensor service, and use that to get an instance of
+        // a particular sensor.
+         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
         textViewTimer = (TextView) findViewById(R.id.textViewTimer);
         running = true;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
-        if (savedInstanceState != null) {
+       /* if (savedInstanceState != null) {
 
             // Get the previous state of the stopwatch
             // if the activity has been
@@ -48,12 +54,13 @@ public class CounterActivity extends Activity {
             wasRunning
                     = savedInstanceState
                     .getBoolean("wasRunning");
-        }
+        }*/
         runTimer();
     }
+
     // Save the state of the stopwatch
     // if it's about to be destroyed.
-    @Override
+/*    @Override
     public void onSaveInstanceState(
             Bundle savedInstanceState)
     {
@@ -63,7 +70,7 @@ public class CounterActivity extends Activity {
                 .putBoolean("running", running);
         savedInstanceState
                 .putBoolean("wasRunning", wasRunning);
-    }
+    }*/
 
     // If the activity is paused,
     // stop the stopwatch.
@@ -71,6 +78,7 @@ public class CounterActivity extends Activity {
     protected void onPause()
     {
         super.onPause();
+        sensorManager.unregisterListener(this);
         wasRunning = running;
         running = false;
     }
@@ -82,6 +90,7 @@ public class CounterActivity extends Activity {
     protected void onResume()
     {
         super.onResume();
+        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
         if (wasRunning) {
             running = true;
         }
@@ -96,25 +105,10 @@ public class CounterActivity extends Activity {
         running = true;
     }
 
-    // Stop the stopwatch running
-    // when the Stop button is clicked.
-    // Below method gets called
-    // when the Stop button is clicked.
     public void onClickStop(View view)
     {
         running = false;
     }
-
-    // Reset the stopwatch when
-    // the Reset button is clicked.
-    // Below method gets called
-    // when the Reset button is clicked.
-    public void onClickReset(View view)
-    {
-        running = false;
-        seconds = 0;
-    }
-
 
 
     private void runTimer() {
@@ -136,7 +130,6 @@ public class CounterActivity extends Activity {
         // will run almost immediately.
         handler.post(new Runnable() {
             @Override
-
             public void run() {
                 int hours = seconds / 3600;
                 int minutes = (seconds % 3600) / 60;
@@ -166,4 +159,27 @@ public class CounterActivity extends Activity {
         });
     }
 
+
+    // Sensor
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do something here if sensor accuracy changes.
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        float distance = event.values[0];
+        getTextViewPushupCounter = (TextView) findViewById(R.id.textViewPUshupCounter);
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            if (distance > 8 && !position) {
+                position = true;
+                pushupCounter++;
+                getTextViewPushupCounter.setText("" + pushupCounter);
+            } else if (distance < 8)
+            {
+                position = false;
+            }
+        }
+    }
 }

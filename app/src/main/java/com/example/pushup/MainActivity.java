@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startPushUp(View view){
-        Intent intent = new Intent(this, DisplayMainPushUpPage.class);
+        Intent intent = new Intent(this, CounterActivity.class);
         startActivity(intent);
     }
 }
