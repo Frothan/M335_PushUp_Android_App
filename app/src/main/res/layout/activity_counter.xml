@@ -48,26 +48,61 @@
         android:id="@+id/stopBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="80dp"
         android:backgroundTint="#E40000"
         android:onClick="onClickStop"
         android:text="Stop"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circle_2" />
 
     <TextView
         android:id="@+id/textViewPUshupCounter"
         android:layout_width="96dp"
         android:layout_height="101dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="148dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="0"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/stopBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="162dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:text="Your Goal:"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_2" />
+
+    <TextView
+        android:id="@+id/ShowGoal"
+        android:layout_width="65dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="140dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:onClick="onClickStart"
+        android:text="Start"
+        app:layout_constraintBaseline_toBaselineOf="@+id/stopBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
