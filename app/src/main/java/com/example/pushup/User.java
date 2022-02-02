@@ -2,9 +2,35 @@ package com.example.pushup;
 
 public class User {
     private String fullName;
-    private int goal;
-    private int numberOfPushups;
+    private String age;
+    private String weight;
+    private String height;
+    private String goal;
+    private String numberOfPushups;
     private double time;
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
 
     public String getFullName() {
         return fullName;
@@ -14,19 +40,19 @@ public class User {
         this.fullName = fullName;
     }
 
-    public int getGoal() {
+    public String getGoal() {
         return goal;
     }
 
-    public void setGoal(int goal) {
+    public void setGoal(String goal) {
         this.goal = goal;
     }
 
-    public int getNumberOfPushups() {
+    public String getNumberOfPushups() {
         return numberOfPushups;
     }
 
-    public void setNumberOfPushups(int numberOfPushups) {
+    public void setNumberOfPushups(String numberOfPushups) {
         this.numberOfPushups = numberOfPushups;
     }
 

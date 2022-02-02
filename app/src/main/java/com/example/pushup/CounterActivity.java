@@ -1,6 +1,5 @@
 package com.example.pushup;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -55,7 +54,7 @@ public class CounterActivity extends Activity implements SensorEventListener {
                     = savedInstanceState
                     .getBoolean("wasRunning");
         }*/
-        runTimer();
+        /*runTimer();*/
     }
 
     // Save the state of the stopwatch
@@ -103,6 +102,7 @@ public class CounterActivity extends Activity implements SensorEventListener {
     public void onClickStart(View view)
     {
         running = true;
+        runTimer();
     }
 
     public void onClickStop(View view)
@@ -140,7 +140,7 @@ public class CounterActivity extends Activity implements SensorEventListener {
                 String time
                         = String
                         .format(Locale.getDefault(),
-                                "%d:%02d:%02d", hours,
+                                "%02d:%02d:%02d", hours,
                                 minutes, secs);
 
                 // Set the text view text.
@@ -174,8 +174,8 @@ public class CounterActivity extends Activity implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             if (distance > 8 && !position) {
                 position = true;
-                pushupCounter++;
                 getTextViewPushupCounter.setText("" + pushupCounter);
+                pushupCounter++;
             } else if (distance < 8)
             {
                 position = false;
