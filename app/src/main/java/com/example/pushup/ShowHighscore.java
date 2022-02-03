@@ -55,6 +55,7 @@ public class ShowHighscore extends AppCompatActivity {
                 // fetch mobile number and store it in arraylist
                 //mobileNumbers.add(contact.getString("mobile"));
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e);
