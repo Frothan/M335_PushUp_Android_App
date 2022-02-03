@@ -2,6 +2,7 @@ package com.example.pushup;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -9,18 +10,24 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
-public class CounterActivity extends Activity implements SensorEventListener {
+public class CounterActivity extends AppCompatActivity implements SensorEventListener {
 
     TextView textViewTimer;
     TextView getTextViewPushupCounter;
+    TextView userGoal;
+    Button startButton;
+    Button stopButton;
+    Button showResults;
     private int seconds = 0;
     private SensorManager sensorManager;
     private Sensor proximity;
-    // Is the stopwatch running?
     private boolean running;
     private boolean wasRunning;
     private int pushupCounter;
@@ -28,6 +35,7 @@ public class CounterActivity extends Activity implements SensorEventListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
         // Get an instance of the sensor service, and use that to get an instance of
         // a particular sensor.
@@ -35,11 +43,30 @@ public class CounterActivity extends Activity implements SensorEventListener {
          proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
         textViewTimer = (TextView) findViewById(R.id.textViewTimer);
-        running = true;
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_counter);
-       /* if (savedInstanceState != null) {
+        running = true;
+        showResults = (Button) findViewById(R.id.showResults);
+        showResults.setVisibility(View.GONE);
+
+
+
+        String goal;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                goal= null;
+            } else {
+                goal= extras.getString("goal");
+            }
+        } else {
+            goal= (String) savedInstanceState.getSerializable("goal");
+        }
+
+        userGoal = (TextView) findViewById(R.id.ShowGoal);
+        userGoal.setText(goal);
+
+
+      /*  if (savedInstanceState != null) {
 
             // Get the previous state of the stopwatch
             // if the activity has been
@@ -59,10 +86,10 @@ public class CounterActivity extends Activity implements SensorEventListener {
 
     // Save the state of the stopwatch
     // if it's about to be destroyed.
-/*    @Override
+   /* @Override
     public void onSaveInstanceState(
-            Bundle savedInstanceState)
-    {
+            Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
         savedInstanceState
                 .putInt("seconds", seconds);
         savedInstanceState
@@ -82,9 +109,6 @@ public class CounterActivity extends Activity implements SensorEventListener {
         running = false;
     }
 
-    // If the activity is resumed,
-    // start the stopwatch
-    // again if it was running previously.
     @Override
     protected void onResume()
     {
@@ -95,10 +119,6 @@ public class CounterActivity extends Activity implements SensorEventListener {
         }
     }
 
-    // Start the stopwatch running
-    // when the Start button is clicked.
-    // Below method gets called
-    // when the Start button is clicked.
     public void onClickStart(View view)
     {
         running = true;
@@ -107,7 +127,20 @@ public class CounterActivity extends Activity implements SensorEventListener {
 
     public void onClickStop(View view)
     {
+        startButton = (Button) findViewById(R.id.startButton);
+        startButton.setVisibility(View.GONE);
+        stopButton = (Button) findViewById(R.id.stopButton);
+        stopButton.setVisibility(View.GONE);
+        showResults = (Button) findViewById(R.id.showResults);
+        showResults.setVisibility(View.VISIBLE);
+
         running = false;
+    }
+
+    public void showResults(View view)
+    {
+        Intent intent = new Intent(this, ShowHighscore.class);
+        startActivity(intent);
     }
 
 
@@ -122,12 +155,6 @@ public class CounterActivity extends Activity implements SensorEventListener {
         final Handler handler
                 = new Handler();
 
-        // Call the post() method,
-        // passing in a new Runnable.
-        // The post() method processes
-        // code without a delay,
-        // so the code in the Runnable
-        // will run almost immediately.
         handler.post(new Runnable() {
             @Override
             public void run() {

@@ -21,19 +21,17 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    EditText eName;
+    EditText eGoal;
+    EditText eAge;
+    EditText eWeight;
+    EditText eHeight;
+    EditText eNumberOfPushups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    public void startPushUp(View view){
-        Intent intent = new Intent(this, CounterActivity.class);
-/*        String message = eGoal.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);*/
-        startActivity(intent);
     }
 
     public void showHighscore(View view){
@@ -43,21 +41,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveData(View view) throws JSONException {
 
-        EditText eName = (EditText) findViewById(R.id.Name);
-        EditText eGoal = (EditText) findViewById(R.id.Goal);
-        EditText eAge = (EditText) findViewById(R.id.Age);
-        EditText eWeight = (EditText) findViewById(R.id.Weight);
-        EditText eHeight = (EditText) findViewById(R.id.Height);
-
+        eName = (EditText) findViewById(R.id.Name);
+        eGoal = (EditText) findViewById(R.id.Goal);
+        eAge = (EditText) findViewById(R.id.Age);
+        eWeight = (EditText) findViewById(R.id.Weight);
+        eHeight = (EditText) findViewById(R.id.Height);
+        eNumberOfPushups = (EditText) findViewById(R.id.Goal);
         //Muss noch geändert werden -> weil number of pushup ist der counter
-        EditText eNumberOfPushups = (EditText) findViewById(R.id.Goal);
+
+
+
         User currentUser = new User();
         currentUser.setFullName(eName.getText().toString());
         currentUser.setGoal(eGoal.getText().toString());
         currentUser.setAge(eAge.getText().toString());
         currentUser.setWeight(eWeight.getText().toString());
         currentUser.setHeight(eHeight.getText().toString());
-       currentUser.setNumberOfPushups(eNumberOfPushups.getText().toString());
+        currentUser.setNumberOfPushups(eNumberOfPushups.getText().toString());
         FileOutputStream outputStream;
         JSONObject user = new JSONObject();
         try {
@@ -85,5 +85,12 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void startPushUp(View view){
+        Intent intent = new Intent(this, CounterActivity.class);
+        String message = eGoal.getText().toString();
+        intent.putExtra("goal", message);
+        startActivity(intent);
     }
 }

@@ -10,7 +10,7 @@
         android:id="@+id/textViewTimer"
         android:layout_width="183dp"
         android:layout_height="88dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="36dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="00:00:00"
         android:textSize="36sp"
@@ -23,11 +23,12 @@
         android:id="@+id/textViewNumberOfPushupsLabel"
         android:layout_width="320dp"
         android:layout_height="49dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Number of your pushups"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTimer" />
 
@@ -36,7 +37,7 @@
         android:layout_width="138dp"
         android:layout_height="142dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/circle_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -45,31 +46,33 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/stopBtn"
+        android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="68dp"
         android:backgroundTint="#E40000"
         android:onClick="onClickStop"
         android:text="Stop"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circle_2" />
+        app:layout_constraintTop_toBottomOf="@+id/showResults" />
 
     <TextView
         android:id="@+id/textViewPUshupCounter"
         android:layout_width="96dp"
         android:layout_height="101dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginTop="248dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="0"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/stopBtn"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/textView"
@@ -85,8 +88,8 @@
 
     <TextView
         android:id="@+id/ShowGoal"
-        android:layout_width="65dp"
-        android:layout_height="37dp"
+        android:layout_width="54dp"
+        android:layout_height="28dp"
         android:layout_marginBottom="140dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,13 +99,24 @@
         app:layout_constraintVertical_bias="0.156" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="84dp"
         android:onClick="onClickStart"
         android:text="Start"
-        app:layout_constraintBaseline_toBaselineOf="@+id/stopBtn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/stopButton"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/showResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="showResults"
+        android:text="Show Results"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ShowGoal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
