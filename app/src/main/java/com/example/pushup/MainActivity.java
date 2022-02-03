@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     EditText eAge;
     EditText eWeight;
     EditText eHeight;
-    EditText eNumberOfPushups;
-    Button continueBtn;
 
     User currentUser = new User();
 

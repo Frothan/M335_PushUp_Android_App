@@ -100,9 +100,10 @@
 
     <Button
         android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_width="87dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="68dp"
+        android:backgroundTint="#4CAF50"
         android:onClick="onClickStart"
         android:text="Start"
         app:layout_constraintBaseline_toBaselineOf="@+id/stopButton"
