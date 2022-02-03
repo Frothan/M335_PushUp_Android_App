@@ -11,10 +11,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Locale;
 
 public class CounterActivity extends AppCompatActivity implements SensorEventListener {
@@ -32,6 +44,15 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
     private boolean wasRunning;
     private int pushupCounter;
     boolean position = false;
+
+    // MAIN
+    EditText eName;
+    EditText eGoal;
+    EditText eAge;
+    EditText eWeight;
+    EditText eHeight;
+
+    User currentUser = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +86,8 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
         userGoal = (TextView) findViewById(R.id.ShowGoal);
         userGoal.setText(goal);
 
+        Bundle extras = getIntent().getExtras();
+        currentUser = (User) extras.getParcelable("user");
 
       /*  if (savedInstanceState != null) {
 
@@ -125,8 +148,9 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
         runTimer();
     }
 
-    public void onClickStop(View view)
-    {
+    public void onClickStop(View view) throws JSONException {
+
+        saveData(view);
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setVisibility(View.GONE);
         stopButton = (Button) findViewById(R.id.stopButton);
@@ -135,22 +159,24 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
         showResults.setVisibility(View.VISIBLE);
 
         running = false;
+
     }
 
-    public void showResults(View view)
+
+
+    public void showResults(View view) throws JSONException
     {
+
         Intent intent = new Intent(this, ShowHighscore.class);
         startActivity(intent);
     }
 
 
     private void runTimer() {
-
         // Get the text view.
         final TextView timeView
                 = (TextView) findViewById(
                 R.id.textViewTimer);
-
         // Creates a new Handler
         final Handler handler
                 = new Handler();
@@ -208,5 +234,64 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
                 position = false;
             }
         }
+    }
+
+
+    //MAIN
+    public void saveData(View view) throws JSONException {
+
+
+        getTextViewPushupCounter = (TextView) findViewById(R.id.textViewPUshupCounter);
+        textViewTimer = (TextView) findViewById(R.id.textViewTimer);
+        //Muss noch geändert werden -> weil number of pushup ist der counter
+
+        currentUser.setNumberOfPushups(getTextViewPushupCounter.getText().toString());
+        currentUser.setTime(textViewTimer.getText().toString());
+        JSONArray userArray = null;
+        String responce = "";
+        try {
+            // Read json file
+            Context context = this;
+            File file = new File(context.getFilesDir(),"UserData.json");
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            if (line != null) {
+                while (line != null) {
+                    stringBuilder.append(line).append("\n");
+                    line = bufferedReader.readLine();
+                }
+                responce = stringBuilder.toString();
+                //
+
+                JSONObject obj = new JSONObject(responce);
+                // fetch JSONArray named users
+                userArray = obj.getJSONArray("User");
+            }
+            else
+                userArray = new JSONArray();
+            bufferedReader.close();
+
+
+
+            userArray.put(currentUser.toJSON());
+            JSONObject userObj = new JSONObject();
+            userObj.put("User", userArray);
+            responce = userObj.toString();
+
+            // Write json file
+            // Define the File Path and its Name
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(responce);
+            bufferedWriter.close();
+
+        } catch (JSONException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
