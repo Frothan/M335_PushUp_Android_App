@@ -44,7 +44,7 @@ public class ShowHighscore extends AppCompatActivity {
                 // create a JSONObject for fetching single user data
                 JSONObject userDetail = userArray.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                users.add(userDetail.getString("FullName"));
+                users.add(userDetail.getString("fullName"));
                 //emailIds.add(userDetail.getString("email"));
                 // create a object for getting contact data from JSONObject
                 //JSONObject contact = userDetail.getJSONObject("contact");
@@ -64,7 +64,7 @@ public class ShowHighscore extends AppCompatActivity {
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            FileInputStream is = openFileInput("UserData");
+            FileInputStream is = openFileInput("UserData.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
