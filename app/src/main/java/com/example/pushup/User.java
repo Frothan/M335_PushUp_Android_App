@@ -1,15 +1,55 @@
 package com.example.pushup;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONObject;
 
-public class User {
+public class User implements Parcelable {
+    private int id;
     private String fullName;
     private String age;
     private String weight;
     private String height;
     private String goal;
     private String numberOfPushups;
-    private double time;
+    private String time;
+
+    public User()
+    {
+
+    }
+    protected User(Parcel in) {
+        id = in.readInt();
+        fullName = in.readString();
+        age = in.readString();
+        weight = in.readString();
+        height = in.readString();
+        goal = in.readString();
+        numberOfPushups = in.readString();
+        time = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getAge() {
         return age;
     }
@@ -58,30 +98,18 @@ public class User {
         this.numberOfPushups = numberOfPushups;
     }
 
-    public double getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(double time) {
+    public void setTime(String time) {
         this.time = time;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "fullName='" + fullName + '\'' +
-                ", age='" + age + '\'' +
-                ", weight='" + weight + '\'' +
-                ", height='" + height + '\'' +
-                ", goal='" + goal + '\'' +
-                ", numberOfPushups='" + numberOfPushups + '\'' +
-                ", time=" + time +
-                '}';
     }
 
     public JSONObject toJSON() {
         JSONObject o = new JSONObject();
         try {
+            o.put("id", this.id);
             o.put("fullName", this.fullName);
             o.put("age", this.age);
             o.put("weight", this.weight);
@@ -96,4 +124,21 @@ public class User {
         }
         return o;
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(fullName);
+        parcel.writeString(age);
+        parcel.writeString(weight);
+        parcel.writeString(height);
+        parcel.writeString(goal);
+        parcel.writeString(numberOfPushups);
+        parcel.writeString(time);
+    }
 }
