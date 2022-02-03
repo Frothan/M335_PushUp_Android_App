@@ -14,7 +14,7 @@
             android:exported="false" />
         <activity
             android:name=".CounterActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -34,9 +34,11 @@
         </Button>
 
         <Button
+            android:id="@+id/Highscores"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#DDD7D7"
+            android:onClick="showHighscore"
             android:paddingVertical="0dp"
             android:text="Highscores"
             android:textAlignment="center"

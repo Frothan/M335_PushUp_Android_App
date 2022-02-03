@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showHighscore(View view){
+        Intent intent = new Intent(this, ShowHighscore.class);
+        startActivity(intent);
+    }
+
     public void saveData(View view) throws JSONException {
 
         EditText eName = (EditText) findViewById(R.id.Name);
