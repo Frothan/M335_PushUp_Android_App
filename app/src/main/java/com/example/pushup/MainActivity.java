@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText eAge;
     EditText eWeight;
     EditText eHeight;
+    EditText eNumberOfPushups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +41,18 @@ public class MainActivity extends AppCompatActivity {
         eAge = (EditText) findViewById(R.id.Age);
         eWeight = (EditText) findViewById(R.id.Weight);
         eHeight = (EditText) findViewById(R.id.Height);
-
+        eNumberOfPushups = (EditText) findViewById(R.id.Goal);
         //Muss noch geändert werden -> weil number of pushup ist der counter
-        EditText eNumberOfPushups = (EditText) findViewById(R.id.Goal);
+
+
+
         User currentUser = new User();
         currentUser.setFullName(eName.getText().toString());
         currentUser.setGoal(eGoal.getText().toString());
         currentUser.setAge(eAge.getText().toString());
         currentUser.setWeight(eWeight.getText().toString());
         currentUser.setHeight(eHeight.getText().toString());
-       currentUser.setNumberOfPushups(eNumberOfPushups.getText().toString());
+        currentUser.setNumberOfPushups(eNumberOfPushups.getText().toString());
         FileOutputStream outputStream;
         JSONObject user = new JSONObject();
         try {

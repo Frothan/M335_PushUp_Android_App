@@ -1,5 +1,7 @@
 package com.example.pushup;
 
+import org.json.JSONObject;
+
 public class User {
     private String fullName;
     private String age;
@@ -63,4 +65,35 @@ public class User {
     public void setTime(double time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "fullName='" + fullName + '\'' +
+                ", age='" + age + '\'' +
+                ", weight='" + weight + '\'' +
+                ", height='" + height + '\'' +
+                ", goal='" + goal + '\'' +
+                ", numberOfPushups='" + numberOfPushups + '\'' +
+                ", time=" + time +
+                '}';
+    }
+
+    public JSONObject toJSON() {
+        JSONObject o = new JSONObject();
+        try {
+            o.put("fullName", this.fullName);
+            o.put("age", this.age);
+            o.put("weight", this.weight);
+            o.put("height", this.height);
+            o.put("goal", this.goal);
+            o.put("numberOfPushups", this.numberOfPushups);
+            o.put("time", this.time);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return o;
+    };
 }
