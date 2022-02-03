@@ -22,6 +22,8 @@ import java.util.ArrayList;
 public class ShowHighscore extends AppCompatActivity {
 
     ArrayList<String> users = new ArrayList<>();
+    ArrayList<String> time = new ArrayList<>();
+    ArrayList<String> pushups = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class ShowHighscore extends AppCompatActivity {
                 JSONObject userDetail = userArray.getJSONObject(i);
                 // fetch email and name and store it in arraylist
                 users.add(userDetail.getString("fullName"));
+                time.add(userDetail.getString("time"));
+                pushups.add(userDetail.getString("numberOfPushups"));
                 //emailIds.add(userDetail.getString("email"));
                 // create a object for getting contact data from JSONObject
                 //JSONObject contact = userDetail.getJSONObject("contact");
@@ -57,7 +61,7 @@ public class ShowHighscore extends AppCompatActivity {
         }
 
         //  call the constructor of CustomAdapter to send the reference and data to Adapter
-        CustomAdapter customAdapter = new CustomAdapter(ShowHighscore.this, users);
+        CustomAdapter customAdapter = new CustomAdapter(ShowHighscore.this, users, time, pushups);
         rvUser.setAdapter(customAdapter); // set the Adapter to RecyclerView
     }
 
