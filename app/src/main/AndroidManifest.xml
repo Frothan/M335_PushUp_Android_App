@@ -11,10 +11,14 @@
         android:theme="@style/Theme.PushUp">
         <activity
             android:name=".ShowHighscore"
-            android:exported="false" />
+            android:label="Highscores"
+            android:exported="false"
+            android:parentActivityName=".CounterActivity"/>
         <activity
             android:name=".CounterActivity"
-            android:exported="true" />
+            android:label="Counter"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
