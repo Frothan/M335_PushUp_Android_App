@@ -45,7 +45,7 @@ public class ShowHighscore extends AppCompatActivity {
             for (int i = 0; i < userArray.length(); i++) {
                 // create a JSONObject for fetching single user data
                 JSONObject userDetail = userArray.getJSONObject(i);
-                // fetch email and name and store it in arraylist
+
                 users.add(userDetail.getString("fullName"));
                 time.add(userDetail.getString("time"));
                 pushups.add(userDetail.getString("numberOfPushups"));

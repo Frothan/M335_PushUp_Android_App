@@ -136,7 +136,7 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
     protected void onResume()
     {
         super.onResume();
-        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
+        /*sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);*/
         if (wasRunning) {
             running = true;
         }
@@ -144,12 +144,13 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
 
     public void onClickStart(View view)
     {
+        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
         running = true;
         runTimer();
     }
 
     public void onClickStop(View view) throws JSONException {
-
+        sensorManager.unregisterListener(this);
         saveData(view);
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setVisibility(View.GONE);
@@ -225,11 +226,11 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
         float distance = event.values[0];
         getTextViewPushupCounter = (TextView) findViewById(R.id.textViewPUshupCounter);
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (distance > 8 && !position) {
+            if (distance > 4 && !position) {
                 position = true;
                 getTextViewPushupCounter.setText("" + pushupCounter);
                 pushupCounter++;
-            } else if (distance < 8)
+            } else if (distance < 4)
             {
                 position = false;
             }
@@ -253,6 +254,9 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
             // Read json file
             Context context = this;
             File file = new File(context.getFilesDir(),"UserData.json");
+            if(!file.exists()){
+                file.createNewFile();
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             StringBuilder stringBuilder = new StringBuilder();
