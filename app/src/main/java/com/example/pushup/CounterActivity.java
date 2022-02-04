@@ -136,7 +136,7 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
     protected void onResume()
     {
         super.onResume();
-        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
+        /*sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);*/
         if (wasRunning) {
             running = true;
         }
@@ -144,6 +144,7 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
 
     public void onClickStart(View view)
     {
+        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
         running = true;
         runTimer();
     }
@@ -253,6 +254,9 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
             // Read json file
             Context context = this;
             File file = new File(context.getFilesDir(),"UserData.json");
+            if(!file.exists()){
+                file.createNewFile();
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             StringBuilder stringBuilder = new StringBuilder();
