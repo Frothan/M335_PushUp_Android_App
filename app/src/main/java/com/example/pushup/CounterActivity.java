@@ -149,7 +149,7 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
     }
 
     public void onClickStop(View view) throws JSONException {
-
+        sensorManager.unregisterListener(this);
         saveData(view);
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setVisibility(View.GONE);
@@ -225,11 +225,11 @@ public class CounterActivity extends AppCompatActivity implements SensorEventLis
         float distance = event.values[0];
         getTextViewPushupCounter = (TextView) findViewById(R.id.textViewPUshupCounter);
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (distance > 8 && !position) {
+            if (distance > 4 && !position) {
                 position = true;
                 getTextViewPushupCounter.setText("" + pushupCounter);
                 pushupCounter++;
-            } else if (distance < 8)
+            } else if (distance < 4)
             {
                 position = false;
             }
